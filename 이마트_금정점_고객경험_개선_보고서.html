@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>이마트 금정점 시니어 고객경험(CX) 혁신 프로젝트 보고서</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: 297mm 167.0625mm; /* 16:9 widescreen ratio */
+      margin: 0;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #2b2d42;
+      color: #1f2937;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 슬라이드 기본 규격 (16:9 와이드) */
+    .slide {
+      width: 297mm;
+      height: 167.0625mm;
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      page-break-inside: avoid;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      padding: 10mm 14mm 8mm 14mm;
+    }
+
+    /* 헤더 스타일 */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 3.5mm;
+      margin-bottom: 4mm;
+      height: 18mm;
+    }
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
+    .header-category {
+      font-size: 8pt;
+      font-weight: 700;
+      color: #0b69a3;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1mm;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .header-category::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #ffb800;
+      border-radius: 2px;
+    }
+    .header-title {
+      font-size: 15.5pt;
+      font-weight: 800;
+      color: #102a43;
+      letter-spacing: -0.5px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .slide-badge {
+      font-size: 7.5pt;
+      font-weight: 700;
+      background: #eff6ff;
+      color: #1d4ed8;
+      padding: 3px 8px;
+      border-radius: 12px;
+      border: 1px solid #bfdbfe;
+    }
+    .slide-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12pt;
+      font-weight: 800;
+      color: #94a3b8;
+    }
+
+    /* 본문 레이아웃 */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5mm;
+      height: calc(167.0625mm - 18mm - 12mm);
+    }
+
+    /* 푸터 스타일 */
+    .slide-footer {
+      height: 6mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #f1f5f9;
+      margin-top: auto;
+      padding-top: 1.5mm;
+      font-size: 6.5pt;
+      color: #94a3b8;
+    }
+
+    /* 범용 컴포넌트 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      height: 100%;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3.5mm;
+      height: 100%;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 3mm;
+      height: 100%;
+    }
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 7px;
+      padding: 3.5mm;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 2mm;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .card-title .icon {
+      font-size: 11pt;
+    }
+    .highlight-text {
+      color: #d97706;
+      font-weight: 700;
+    }
+    .primary-text {
+      color: #0b69a3;
+      font-weight: 700;
+    }
+    .alert-text {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    /* 표지 슬라이드 전용 스타일 */
+    .slide-cover {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f2b46 100%);
+      color: #ffffff;
+      padding: 16mm 18mm;
+      justify-content: space-between;
+    }
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cover-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cover-emart-pill {
+      background: #ffb800;
+      color: #111827;
+      font-weight: 900;
+      font-size: 9pt;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    .cover-org {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #cbd5e1;
+      letter-spacing: 0.5px;
+    }
+    .cover-center {
+      margin: auto 0;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: rgba(255, 184, 0, 0.15);
+      border: 1px solid #ffb800;
+      color: #ffb800;
+      font-size: 8pt;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 4mm;
+    }
+    .cover-title {
+      font-size: 26pt;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin-bottom: 3mm;
+      color: #ffffff;
+    }
+    .cover-title span {
+      color: #ffb800;
+    }
+    .cover-subtitle {
+      font-size: 11.5pt;
+      font-weight: 400;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .cover-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 4mm;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 15mm;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
+    .cover-meta strong {
+      color: #f1f5f9;
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* 통계 수치 하이라이트 박스 */
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 2.5mm 3.5mm;
+      text-align: center;
+    }
+    .stat-label {
+      font-size: 7pt;
+      color: #64748b;
+      font-weight: 600;
+      margin-bottom: 1mm;
+    }
+    .stat-val {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17pt;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .stat-val.accent {
+      color: #d97706;
+    }
+    .stat-val.red {
+      color: #dc2626;
+    }
+    .stat-desc {
+      font-size: 6.5pt;
+      color: #94a3b8;
+      margin-top: 0.5mm;
+    }
+
+    /* 테이블 스타일 */
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.2pt;
+      margin-top: 1mm;
+    }
+    .custom-table th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+      padding: 2.2mm 2mm;
+      border-top: 2px solid #cbd5e1;
+      border-bottom: 1px solid #cbd5e1;
+      text-align: center;
+    }
+    .custom-table td {
+      padding: 2.2mm 2mm;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: middle;
+    }
+    .custom-table tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    /* 이미지 박스 */
+    .img-card {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+    }
+    .img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .img-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.85);
+      color: #ffffff;
+      font-size: 6.5pt;
+      padding: 2mm 3mm;
+      line-height: 1.3;
+    }
+
+    /* 모바일/태블릿 UI 목업 스타일 */
+    .tablet-mockup {
+      background: #111827;
+      border-radius: 12px;
+      padding: 3mm;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .tablet-screen {
+      background: #ffffff;
+      border-radius: 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .tablet-topbar {
+      background: #ffb800;
+      color: #111827;
+      padding: 2mm 3mm;
+      font-size: 7.5pt;
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tablet-content {
+      padding: 3mm;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+
+    /* 감정 그래프 바 */
+    .emotion-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 6.5pt;
+      font-weight: 700;
+    }
+    .emotion-low { background: #fee2e2; color: #b91c1c; }
+    .emotion-mid { background: #fef3c7; color: #b45309; }
+    .emotion-high { background: #dcfce7; color: #15803d; }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== SLIDE 01: 표지 ==================== -->
+  <div class="slide slide-cover">
+    <div class="cover-top">
+      <div class="cover-logo-group">
+        <span class="cover-emart-pill">emart 금정점</span>
+        <span class="cover-org">신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      </div>
+      <div style="font-family:'Montserrat', sans-serif; font-size:8pt; color:#cbd5e1; font-weight:600;">
+        FINAL REPORT · 2026.10
+      </div>
+    </div>
+
+    <div class="cover-center">
+      <div class="cover-badge">💡 오프라인 대형마트 고객경험(CX) 혁신 프로젝트</div>
+      <h1 class="cover-title">
+        초고령 상권 맞춤형<br>
+        <span>자립형 시니어</span> 쇼핑경험 혁신안
+      </h1>
+      <p class="cover-subtitle">
+        이마트 금정점 내점 고객 관찰 및 500m 상권 빅데이터 분석 기반<br>
+        <strong>3-Step 매장안내 시스템</strong>과 <strong>시니어 프렌들리 이지 스마트 카트(Easy Cart)</strong> 도입을 중심으로
+      </p>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-meta">
+        <div>
+          <span>대상 점포</span>
+          <strong>이마트 금정점 (부산 금정구 구서동)</strong>
+        </div>
+        <div>
+          <span>과제 구분</span>
+          <strong>1차 고객경험 프로젝트 (팀 과제)</strong>
+        </div>
+        <div>
+          <span>핵심 솔루션</span>
+          <strong>3-Step 매장안내도 + 이지 스마트 카트 + 사랑방 쉼터</strong>
+        </div>
+      </div>
+      <div style="text-align:right; font-size:7.5pt; color:#cbd5e1;">
+        <span style="color:#ffb800; font-weight:700;">SHINSEGAE GROUP</span> ACADEMY TEAM 1
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 02: Executive Summary ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Executive Summary</span>
+        <h2 class="header-title">한눈에 보는 핵심 요약: 배경 · 문제 · 솔루션 · 기대효과</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">프로젝트 총괄</span>
+        <span class="slide-number">02/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <!-- 상단 4대 핵심 매트릭스 -->
+      <div class="grid-4" style="height: 38mm;">
+        <div class="card" style="border-left: 4px solid #0b69a3;">
+          <div class="card-title"><span class="icon">📍</span>상권 및 고객 특성</div>
+          <p style="font-size:7.2pt; line-height:1.45; color:#475569;">
+            • 반경 500m 유동인구 중 <strong>60대 이상 36.0%(전 연령 1위)</strong><br>
+            • 배후 주거지 고령화율 <strong>27~32%</strong> 초고령사회<br>
+            • 월평균 4분위 안정적 소비력을 가진 <strong>'자립형 액티브 시니어'</strong>
+          </p>
+        </div>
+        <div class="card" style="border-left: 4px solid #dc2626;">
+          <div class="card-title"><span class="icon">⚠️</span>핵심 Pain Points</div>
+          <p style="font-size:7.2pt; line-height:1.45; color:#475569;">
+            • 3개 출입구 어디에도 <strong>매장 안내도 전무</strong><br>
+            • 천장 표지판 시야각 불일치로 <strong>상품 탐색 실패/피로</strong><br>
+            • 유인 캐셔 3대만 가동 vs <strong>셀프계산대 18대 조작 기피/병목</strong>
+          </p>
+        </div>
+        <div class="card" style="border-left: 4px solid #ffb800;">
+          <div class="card-title"><span class="icon">💡</span>2-Track 혁신 솔루션</div>
+          <p style="font-size:7.2pt; line-height:1.45; color:#475569;">
+            • <strong>[물리 환경]</strong> 3-Step 안내도 (리플릿 + 아이레벨 + 바닥유도)<br>
+            • <strong>[리테일테크]</strong> 시니어 이지 스마트 카트 (음성/즉시결제)<br>
+            • <strong>[공간/인적]</strong> 이마트 사랑방 쉼터 + 골든 서포터즈
+          </p>
+        </div>
+        <div class="card" style="border-left: 4px solid #16a34a;">
+          <div class="card-title"><span class="icon">🎯</span>비즈니스 기대효과</div>
+          <p style="font-size:7.2pt; line-height:1.45; color:#475569;">
+            • 상품 탐색 헤맴 시간 <strong>40% 단축</strong> (18분 ➔ 5분)<br>
+            • 계산대 회전율 <strong>35% 개선</strong> 및 대기시간 50% 단축<br>
+            • 실시간 혜택 노출로 <strong>객단가 +12%</strong> 증대
+          </p>
+        </div>
+      </div>
+
+      <!-- 하단 평가기준 정렬 및 접근 방식 -->
+      <div class="card" style="flex:1; background:#f8fafc; border:1px solid #cbd5e1; padding:3mm 4mm;">
+        <div style="font-size:8.5pt; font-weight:800; color:#1e293b; margin-bottom:2mm; display:flex; justify-content:space-between;">
+          <span>🎯 퓨처앤드림아카데미 5대 평가 기준 부합성 매핑 (Alignment)</span>
+          <span style="color:#0b69a3; font-size:7.5pt;">총 배점 100% 충족 구조</span>
+        </div>
+        <div class="grid-4" style="gap:2.5mm; height:calc(100% - 7mm);">
+          <div style="background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0; font-size:6.8pt;">
+            <strong style="color:#0b69a3; display:block; margin-bottom:1mm;">[고객이해 30%]</strong>
+            금정구 인구 통계 + 반경 500m 빅데이터 + 10/14 현장 실사 및 학술 논문(서비스품질 5차원) 실증 분석 완비.
+          </div>
+          <div style="background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0; font-size:6.8pt;">
+            <strong style="color:#0b69a3; display:block; margin-bottom:1mm;">[참신성 25%]</strong>
+            단순 표지판 교체가 아닌 시니어 시선 중심 3-Step 체계 & 복잡성을 걷어낸 '이지 스마트 카트 UX' 최초 기획.
+          </div>
+          <div style="background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0; font-size:6.8pt;">
+            <strong style="color:#0b69a3; display:block; margin-bottom:1mm;">[실현가능성 25%]</strong>
+            이마트 S-랩 및 글로벌 스마트카트 기술 벤치마킹. 고비용 라이다 배제, 경량 태블릿+무게센서 모델로 파일럿 설계.
+          </div>
+          <div style="background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0; font-size:6.8pt;">
+            <strong style="color:#0b69a3; display:block; margin-bottom:1mm;">[완성도/전달력 20%]</strong>
+            현장 실사 사진, UI 화면 목업, As-Is vs To-Be 감정곡선, 3단계 로드맵 등 10분 발표에 최적화된 시각 자료 구축.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 03: 점포 선정 배경 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Background & Store Selection</span>
+        <h2 class="header-title">점포 선정 배경: 초고령사회 진입과 이마트 금정점의 상징성</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">환경 분석</span>
+        <span class="slide-number">03/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-2">
+        <!-- 좌측: 매크로 환경 및 금정구 인구 현황 -->
+        <div class="card">
+          <div class="card-title"><span class="icon">📊</span>부산 금정구 행정동별 고령인구 현황 (2025.07 기준)</div>
+          <p style="font-size:7.2pt; color:#64748b; margin-bottom:2mm;">
+            부산은 전국 8대 특·광역시 중 가장 먼저 초고령사회에 진입하였으며, 이마트 금정점 인근 배후 주거지는 고령화율이 25~32%에 달함.
+          </p>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>행정동</th>
+                <th>총 인구수</th>
+                <th>65세 이상 인구</th>
+                <th>고령 인구 비율</th>
+                <th>특성</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:700;">구서2동 (점포 소재)</td>
+                <td>29,989명</td>
+                <td>8,106명</td>
+                <td class="alert-text">27.0%</td>
+                <td>대단지 아파트 밀집 주거지</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;">구서1동 (인접)</td>
+                <td>18,235명</td>
+                <td>4,520명</td>
+                <td class="alert-text">24.8%</td>
+                <td>구서역 역세권 상업·주거</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;">부곡3동 (인접)</td>
+                <td>14,271명</td>
+                <td>3,867명</td>
+                <td class="alert-text">27.1%</td>
+                <td>단독·다세대 혼합 주거지</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700;">남산동 (배후)</td>
+                <td>25,407명</td>
+                <td>8,231명</td>
+                <td class="alert-text">32.4%</td>
+                <td>초고령 밀집 생활권역</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-top:auto; background:#eff6ff; border:1px solid #bfdbfe; border-radius:5px; padding:2mm 3mm; font-size:6.8pt; color:#1e40af;">
+            💡 <strong>핵심 시사점:</strong> 이마트 금정점은 단순한 일반 점포가 아니라, <strong>향후 전국 대형마트가 직면할 '시니어 중심 점포 모델'을 가장 먼저 검증할 수 있는 최적의 테스트베드</strong>임.
+          </div>
+        </div>
+
+        <!-- 우측: 3대 선정 이유 카드 -->
+        <div style="display:flex; flex-direction:column; gap:3mm;">
+          <div class="card" style="flex:1;">
+            <div class="card-title" style="color:#0b69a3;"><span class="icon">1️⃣</span> 고령 주거벨트의 중심 입지</div>
+            <p style="font-size:7.2pt; color:#475569; line-height:1.45;">
+              구서동·부곡동의 대규모 아파트 단지(구서 롯데캐슬, 쌍용예가 등)와 전통 주거지가 밀집해 있어 <strong>시니어 고객의 오프라인 도보 및 대중교통 내방 비율이 압도적으로 높음.</strong>
+            </p>
+          </div>
+          <div class="card" style="flex:1;">
+            <div class="card-title" style="color:#d97706;"><span class="icon">2️⃣</span> 높은 구매력과 충성도를 지닌 액티브 시니어</div>
+            <p style="font-size:7.2pt; line-height:1.45; color:#475569;">
+              온라인 장보기에 서투르고 신선식품을 '직접 눈으로 보고 고르는' 대형마트 선호 경향이 뚜렷함. 월평균 4분위의 안정된 소비력을 갖추어 <strong>오프라인 매장의 실질적 핵심 매출원</strong>으로 기능함.
+            </p>
+          </div>
+          <div class="card" style="flex:1;">
+            <div class="card-title" style="color:#dc2626;"><span class="icon">3️⃣</span> 디지털 전환(셀프계산대)과 시니어 고객의 마찰 임계점</div>
+            <p style="font-size:7.2pt; line-height:1.45; color:#475569;">
+              비용 절감을 위해 도입된 무인 셀프계산대(18대)와 축소된 유인 계산대(3대 운영) 간의 불균형으로 인해 <strong>시니어 고객의 쇼핑 경험 악화 및 이탈 위험이 가장 심각한 현장</strong>임.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 04: 상권 빅데이터 분석 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Big Data Analysis</span>
+        <h2 class="header-title">상권 빅데이터 분석: 반경 500m 핵심 생활권역 지표</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">정량 데이터</span>
+        <span class="slide-number">04/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <!-- 4대 통계 카드 -->
+      <div class="grid-4" style="height:26mm;">
+        <div class="stat-box">
+          <div class="stat-label">일평균 유동인구 60대+ 비율</div>
+          <div class="stat-val accent">36.0%</div>
+          <div class="stat-desc">85,784명 중 31,197명 (전 연령 1위)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">50대 + 60대 이상 합산 비율</div>
+          <div class="stat-val primary-text">57.0%</div>
+          <div class="stat-desc">50대 21.0% + 60대+ 36.0% 과반 초과</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">주거인구 60대 이상 비율</div>
+          <div class="stat-val">35.3%</div>
+          <div class="stat-desc">16,870명 중 5,956명 (여성 52.7%)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">반경 500m 내 의료/복지 시설</div>
+          <div class="stat-val red">78개소</div>
+          <div class="stat-desc">금정구 전체 중 최고 밀집 구역</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="flex:1;">
+        <!-- 유동인구 요일/시간 특성 -->
+        <div class="card">
+          <div class="card-title"><span class="icon">📈</span>유동인구 및 소비 행태 패턴</div>
+          <div style="font-size:7.2pt; color:#475569; line-height:1.5;">
+            <div style="margin-bottom:2mm; background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>• 주중과 주말의 균등한 방문:</strong> 주중 49.1% vs 주말 50.9%로 요일 편차가 거의 없음. 은퇴한 시니어 고객이 평일 낮 시간대에 규칙적으로 장을 보는 생활 루틴이 형성됨.
+            </div>
+            <div style="margin-bottom:2mm; background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>• 피크 방문 시간대:</strong> 14시~18시(24.8%)와 18시~23시(25.1%)에 집중. 특히 14~18시는 시니어 주부층의 주 쇼핑 시간대임.
+            </div>
+            <div style="background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>• 소득 및 소비 수준:</strong> 60대 이상 월평균 소비 141~163만 원(4분위). 신선식품과 생필품에 대해 지갑을 여는 실질 구매력 확인.
+            </div>
+          </div>
+        </div>
+
+        <!-- 주변 시설 및 접근성 특성 -->
+        <div class="card">
+          <div class="card-title"><span class="icon">🏥</span>의료·복지 연계 및 교통 인프라</div>
+          <div style="font-size:7.2pt; color:#475569; line-height:1.5;">
+            <div style="margin-bottom:2mm; background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>• 의료/복지 시설 78개소 집중:</strong> 척추관절병원, 내과, 한의원, 노인복지센터 등이 반경 500m 내 초밀집. 시니어 고객의 전형적인 외출 동선이 <strong>"병원/복지관 방문 ➔ 이마트 장보기"</strong>로 이어짐.
+            </div>
+            <div style="margin-bottom:2mm; background:#ffffff; border-radius:5px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>• 대중교통 접근성:</strong> 구서역(1호선) 일평균 승하차 18,592명, 버스정류장 45개소. 자가용보다는 도보/지하철/버스를 이용하는 '보행 시니어' 비중이 매우 큼.
+            </div>
+            <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:5px; padding:2mm; color:#991b1b;">
+              ⚠️ <strong>결론:</strong> 무거운 장바구니를 들고 이동해야 하는 보행 시니어 고객에게 <strong>카트의 무게감과 매장 내 쉼터 부재는 심각한 물리적 장벽</strong>으로 작용함.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 05: 현장 실사 관찰 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Field Research</span>
+        <h2 class="header-title">현장 실사 관찰: 2026.10.14(수) 17:40 이마트 금정점 실측</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">현장 관찰</span>
+        <span class="slide-number">05/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-3" style="height:55mm;">
+        <!-- 현장 사진 1: 메인 입구 -->
+        <div class="img-card">
+          <img src="1014수요일 금정점/매장입구_메인.jpg" alt="메인입구" onerror="this.src='https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=600&q=80'">
+          <div class="img-caption">
+            <strong>[현장 1] 메인 출입구 전경</strong><br>
+            입구 3곳 어디에도 플로어 맵(매장 안내도)이 없어 진입 시 두리번거림 발생.
+          </div>
+        </div>
+        <!-- 현장 사진 2: 무빙워크/진열대 -->
+        <div class="img-card">
+          <img src="1014수요일 금정점/2층 올라가는 무빙워크.jpg" alt="무빙워크" onerror="this.src='https://images.unsplash.com/photo-1580913428735-bd3c269d6a82?auto=format&fit=crop&w=600&q=80'">
+          <div class="img-caption">
+            <strong>[현장 2] 1층-2층 무빙워크 동선</strong><br>
+            식품(1층)과 생필품(2층)이 분리되어 층간 이동 피로 및 무거운 카트 운반 부담.
+          </div>
+        </div>
+        <!-- 현장 사진 3: PB 상품존 -->
+        <div class="img-card">
+          <img src="1014수요일 금정점/5k프라이스 pb 상품 진열_비교형_1.jpg" alt="PB진열" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80'">
+          <div class="img-caption">
+            <strong>[현장 3] PB 상품 및 행사 매대</strong><br>
+            5K 프라이스, 노브랜드 등 구역 표지가 작고 산재되어 상품 위치 찾기 어려움.
+          </div>
+        </div>
+      </div>
+
+      <!-- 하단 관찰 팩트 3대 요약 -->
+      <div class="grid-3" style="flex:1;">
+        <div class="card" style="border-top:3px solid #dc2626;">
+          <div style="font-size:8pt; font-weight:800; color:#dc2626; margin-bottom:1mm;">Fact 1. 매장안내도 전무</div>
+          <p style="font-size:6.8pt; color:#475569; line-height:1.4;">
+            메인, 후면, 소형 등 3개 출입구 중 어디에도 층별 배치도나 주요 카테고리 안내도가 없음. 고객센터가 입구에 있으나 직원 문의에 심리적 부담을 느낌.
+          </p>
+        </div>
+        <div class="card" style="border-top:3px solid #d97706;">
+          <div style="font-size:8pt; font-weight:800; color:#d97706; margin-bottom:1mm;">Fact 2. 계산대 불균형 병목</div>
+          <p style="font-size:6.8pt; color:#475569; line-height:1.4;">
+            유인 계산대 8대 중 <strong>단 3대만 가동</strong>되어 10m 이상 긴 줄 형성. 반면 셀프계산대(18대)는 시니어 고객들이 실수할까 두려워 텅 비어 있는 미스매치 발생.
+          </p>
+        </div>
+        <div class="card" style="border-top:3px solid #0b69a3;">
+          <div style="font-size:8pt; font-weight:800; color:#0b69a3; margin-bottom:1mm;">Fact 3. 높은 천장 표지판 한계</div>
+          <p style="font-size:6.8pt; color:#475569; line-height:1.4;">
+            천장형 표지판은 글씨가 작고 보행 시야(아이레벨)보다 한참 높아 고령층이 올려다보기 어려움. PB 매대와 일반 매대가 섞여 있어 헤매는 행동 상시 관찰.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 06: 학술 연구 근거 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Academic Research Evidence</span>
+        <h2 class="header-title">학술 연구 근거: 노인 소비자의 대형마트 서비스품질 지각 분석</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">소비자학연구 (2021)</span>
+        <span class="slide-number">06/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="card" style="background:#eff6ff; border:1px solid #bfdbfe; padding:2.5mm 3.5mm; margin-bottom:1mm;">
+        <div style="font-size:7.5pt; color:#1e40af;">
+          📖 <strong>참고 논문:</strong> 이진명·김민지·서도연 외 (2021), <em>「노인소비자의 대형마트 서비스품질 지각이 만족도 및 노인지향성 지각에 미치는 영향」</em>, 『소비자학연구』 제32권 제6호, pp.53-71.
+        </div>
+      </div>
+
+      <div class="grid-2" style="flex:1;">
+        <!-- 회귀분석 결과 시각화 -->
+        <div class="card">
+          <div class="card-title"><span class="icon">📊</span>서비스품질 5대 하위차원의 영향력 비교 (다중회귀분석)</div>
+          
+          <div style="margin-bottom:3mm;">
+            <div style="font-size:7.2pt; font-weight:700; color:#1e293b; margin-bottom:1mm;">
+              [종속변수 1] 소비자 전반 만족도에 미치는 영향 (R² = .412)
+            </div>
+            <div style="display:flex; flex-direction:column; gap:1.5mm; font-size:6.8pt;">
+              <div style="display:flex; align-items:center;">
+                <span style="width:28mm; font-weight:700; color:#0b69a3;">1. 물리적 환경</span>
+                <div style="flex:1; background:#e2e8f0; height:5mm; border-radius:3px; overflow:hidden;">
+                  <div style="width:85%; background:#0b69a3; height:100%; text-align:right; padding-right:2mm; color:#ffffff; font-weight:700; line-height:5mm;">β = .283*** (압도적 1위)</div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center;">
+                <span style="width:28mm;">2. 본원적 혜택</span>
+                <div style="flex:1; background:#e2e8f0; height:4mm; border-radius:3px; overflow:hidden;">
+                  <div style="width:58%; background:#64748b; height:100%; text-align:right; padding-right:2mm; color:#ffffff; font-weight:700; line-height:4mm;">β = .194**</div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center;">
+                <span style="width:28mm;">3. 인적 상호작용</span>
+                <div style="flex:1; background:#e2e8f0; height:4mm; border-radius:3px; overflow:hidden;">
+                  <div style="width:48%; background:#64748b; height:100%; text-align:right; padding-right:2mm; color:#ffffff; font-weight:700; line-height:4mm;">β = .162*</div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center;">
+                <span style="width:28mm; font-weight:700; color:#d97706;">4. 스마트 혜택</span>
+                <div style="flex:1; background:#e2e8f0; height:4mm; border-radius:3px; overflow:hidden;">
+                  <div style="width:42%; background:#d97706; height:100%; text-align:right; padding-right:2mm; color:#ffffff; font-weight:700; line-height:4mm;">β = .144*</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:7.2pt; font-weight:700; color:#1e293b; margin-bottom:1mm;">
+              [종속변수 2] '노인을 배려하는 마트(노인지향성)' 인식 형성 (R² = .354)
+            </div>
+            <div style="display:flex; flex-direction:column; gap:1.5mm; font-size:6.8pt;">
+              <div style="display:flex; align-items:center;">
+                <span style="width:28mm; font-weight:700; color:#16a34a;">1. 편의적 혜택(휴게)</span>
+                <div style="flex:1; background:#e2e8f0; height:5mm; border-radius:3px; overflow:hidden;">
+                  <div style="width:95%; background:#16a34a; height:100%; text-align:right; padding-right:2mm; color:#ffffff; font-weight:700; line-height:5mm;">β = .378*** (압도적 1위)</div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center;">
+                <span style="width:28mm; font-weight:700; color:#d97706;">2. 스마트 혜택</span>
+                <div style="flex:1; background:#e2e8f0; height:4.5mm; border-radius:3px; overflow:hidden;">
+                  <div style="width:68%; background:#d97706; height:100%; text-align:right; padding-right:2mm; color:#ffffff; font-weight:700; line-height:4.5mm;">β = .228*** (2위)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FGI 인터뷰 원문 및 기획적 시사점 -->
+        <div class="card">
+          <div class="card-title"><span class="icon">💬</span>실제 시니어 심층 인터뷰(FGI) 보이스</div>
+          <div style="display:flex; flex-direction:column; gap:2mm; font-size:6.8pt; line-height:1.45;">
+            <div style="background:#ffffff; border-left:3px solid #0b69a3; padding:2mm; border-radius:3px;">
+              🗣️ <em>“표지판은 있으나 '7번으로 가시오' 이게 끝이잖아요. <strong>7번의 몇 번째 칸 몇째 줄인지 정확하게 찾을 수 있으면</strong> 좋겠어요. 눈높이에서만 보니까 자주 헤매요.”</em>
+            </div>
+            <div style="background:#ffffff; border-left:3px solid #dc2626; padding:2mm; border-radius:3px;">
+              🗣️ <em>“무인계산기는 실수하면 어떡하지… 뒷사람한테 민폐일까 봐 피하게 돼요. <strong>은행 ATM처럼 글씨가 크고 도와주는 사람이 있으면</strong> 좋겠어요.”</em>
+            </div>
+            <div style="background:#ffffff; border-left:3px solid #16a34a; padding:2mm; border-radius:3px;">
+              🗣️ <em>“키즈카페나 수유실은 있는데 <strong>노인들을 위해 잠깐 앉아서 쉴 수 있는 벤치 같은 건 없잖아요.</strong> 나이 들면 장보다가 다리가 너무 아파요.”</em>
+            </div>
+          </div>
+          <div style="margin-top:auto; background:#fef3c7; border:1px solid #fde68a; border-radius:4px; padding:2mm; font-size:6.8pt; color:#92400e;">
+            ✨ <strong>기획 도출:</strong> 고객만족 1위인 <strong>[물리적 환경 안내도]</strong> + 노인지향성 1위인 <strong>[휴게 쉼터]</strong> + 미래 핵심인 <strong>[시니어 스마트 카트]</strong>의 결합이 필수적임.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 07: 타겟 페르소나 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Target Persona</span>
+        <h2 class="header-title">타겟 페르소나: 자립형 시니어 쇼핑객 김영숙 (71세)</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">고객 모델링</span>
+        <span class="slide-number">07/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-2">
+        <!-- 페르소나 인포그래픽 원본 비주얼 카드 -->
+        <div class="card" style="padding:2mm; align-items:center; justify-content:center; background:#0f1d2f; border:1px solid rgba(255,184,0,0.3); overflow:hidden;">
+          <div style="width:100%; height:100%; overflow:hidden; border-radius:4px; position:relative; background:#ffffff;">
+            <img src="./이마트 금정점 고령층 쇼핑 페르소나.png" alt="김영숙 페르소나 인포그래픽" style="width:100%; height:100%; object-fit:contain; object-position:top center;">
+          </div>
+        </div>
+
+        <!-- 페르소나 기본 프로필 및 공감 캔버스 -->
+        <div style="display:flex; flex-direction:column; gap:2.5mm;">
+          <!-- 프로필 요약 카드 -->
+          <div class="card" style="border-left:3.5px solid #ffb800; padding:2.5mm 3.5mm;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1mm;">
+              <span style="font-size:10.5pt; font-weight:800; color:#0f172a;">김영숙 <span style="font-size:7.5pt; font-weight:500; color:#64748b;">(71세 / 여 · 자립형 시니어)</span></span>
+              <span style="font-size:6.5pt; background:#eff6ff; color:#1d4ed8; padding:1px 6px; border-radius:10px; font-weight:700;">부산 금정구 구서동</span>
+            </div>
+            <div style="font-size:7.2pt; color:#d97706; font-weight:700; margin-bottom:1.5mm;">
+              “익숙한 마트에서 필요한 물건을 내 손으로 편하게 사고 싶어요.”
+            </div>
+            <div style="font-size:6.8pt; color:#475569; line-height:1.4;">
+              • <strong>가구 형태:</strong> 은퇴 부부 1~2인 가구 | <strong>방문 빈도:</strong> 주 1~2회 (평일 오후 2~4시)<br>
+              • <strong>주요 품목:</strong> 신선 채소·과일, 참기름 등 양념류, 소량 생필품 | <strong>이동:</strong> 도보/대중교통<br>
+              • <strong>신체/디지털:</strong> 노안 및 퇴행성 무릎 관절염 보유, 무인 키오스크 실수·민폐 공포
+            </div>
+          </div>
+
+          <!-- 공감 캔버스 (Empathy Map) -->
+          <div class="card" style="flex:1; padding:2.5mm 3.5mm;">
+            <div class="card-title" style="margin-bottom:1.5mm;"><span class="icon">🧭</span>공감 캔버스 (Empathy Map)</div>
+            <div class="grid-2" style="gap:2mm; flex:1;">
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:1.5mm; font-size:6.5pt;">
+                <strong style="color:#0b69a3; display:block; margin-bottom:0.5mm;">🗣️ SAY (말)</strong>
+                “이 상품은 어디 있지?”, “셀프계산대는 뒤에 줄 서 있으면 손이 떨려서 못 하겠어.”
+              </div>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:1.5mm; font-size:6.5pt;">
+                <strong style="color:#d97706; display:block; margin-bottom:0.5mm;">💭 THINK (생각)</strong>
+                ‘직원도 바쁜데 자꾸 물어보면 싫어하겠지?’, ‘결제가 잘못돼서 창피당하면 어쩌나.’
+              </div>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:1.5mm; font-size:6.5pt;">
+                <strong style="color:#16a34a; display:block; margin-bottom:0.5mm;">🚶 DO (행동)</strong>
+                익숙한 채소 매대부터 빙빙 돎. 눈높이 표지판을 찾지 못해 캐셔 계산대 줄에 묵묵히 대기.
+              </div>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:1.5mm; font-size:6.5pt;">
+                <strong style="color:#dc2626; display:block; margin-bottom:0.5mm;">💔 PAINS & NEEDS</strong>
+                <strong>Pain:</strong> 반복 이동 피로, 작은 글씨, 무인기계 공포<br>
+                <strong>Need:</strong> 눈높이 안내, 글씨 큰 쉬운 기기, 잠깐 쉴 의자
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 08: As-Is 고객여정지도 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">As-Is Customer Journey Map</span>
+        <h2 class="header-title">As-Is 고객여정지도: 기존 장보기 단계별 Pain Points 및 감정 곡선</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">현행 여정</span>
+        <span class="slide-number">08/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <table class="custom-table" style="font-size:6.8pt;">
+        <thead>
+          <tr>
+            <th style="width:14%;">단계</th>
+            <th style="width:13%;">1. 방문·입장</th>
+            <th style="width:18%;">2. 상품 탐색 (핵심)</th>
+            <th style="width:18%;">3. 가격·품목 비교</th>
+            <th style="width:18%;">4. 계산·결제 (핵심)</th>
+            <th style="width:19%;">5. 포장·귀가</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700; background:#f8fafc;">터치포인트</td>
+            <td>출입구, 카트 보관소</td>
+            <td>통로, 천장 표지판, 매대</td>
+            <td>가격표, 행사 POP, 포장재</td>
+            <td>유인 계산대, 셀프계산대</td>
+            <td>자율포장대, 출구 게이트</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; background:#f8fafc;">고객 행동</td>
+            <td>카트를 꺼내 매장으로 진입</td>
+            <td>메모한 품목을 찾기 위해 통로를 서성임</td>
+            <td>원산지와 가격, 행사조건 확인</td>
+            <td>줄이 길어도 유인계산대 3곳에 대기</td>
+            <td>종이박스 포장 후 버스 정류장 이동</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; background:#f8fafc; color:#dc2626;">Pain Point</td>
+            <td>• 안내도 없음<br>• 카트가 무겁고 뻑뻑함</td>
+            <td>• <strong>천장 표지판 시야각 불일치</strong><br>• 층간 헤맴 및 직원 부재<br>• 다리 통증 발생</td>
+            <td>• 작은 가격표 글씨<br>• 다중구매/PB 복잡한 혜택 조건 이해 난관</td>
+            <td>• <strong>유인 계산대 극심한 정체</strong><br>• 셀프계산대 음성 빠르고 조작 실패 두려움</td>
+            <td>• 박스 테이프 커팅 어려움<br>• 무거운 짐 운반 피로로 녹초 상태 귀가</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; background:#f8fafc;">감정 점수 (1~5)</td>
+            <td><span class="emotion-badge emotion-mid">3.0 보통</span></td>
+            <td><span class="emotion-badge emotion-low">1.8 불만족 (최저)</span></td>
+            <td><span class="emotion-badge emotion-mid">2.5 다소불편</span></td>
+            <td><span class="emotion-badge emotion-low">1.9 불만족 (급락)</span></td>
+            <td><span class="emotion-badge emotion-mid">2.8 피로감</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- As-Is 감정 곡선 다이어그램 -->
+      <div class="card" style="flex:1; margin-top:2mm; justify-content:center; background:#fffaf0; border:1px solid #fed7aa; padding:2mm 4mm;">
+        <div style="font-size:7.5pt; font-weight:700; color:#c2410c; margin-bottom:1.5mm;">
+          📉 As-Is 감정 하락 구간 분석 (평균 감정 점수: 2.4점)
+        </div>
+        <div style="font-size:6.8pt; color:#431407; line-height:1.45;">
+          • <strong>Pain Point Drop 1 [상품 탐색 1.8점]:</strong> 매장 입구 안내도가 전무하여 매대를 2~3회 반복 왕복하는 '탐색의 단절' 발생.<br>
+          • <strong>Pain Point Drop 2 [계산·결제 1.9점]:</strong> 셀프계산대 18대가 있음에도 디지털 조작 불안으로 3개뿐인 유인 계산대에서 15분 이상 기립 대기하는 '디지털 소외' 발생.
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 09: 문제 정의 (POV & HMW) ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Problem Definition</span>
+        <h2 class="header-title">진짜 문제 정의: 관점 정의(POV) 및 3대 핵심 HMW 질문</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">디자인씽킹</span>
+        <span class="slide-number">09/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <!-- POV 카드 -->
+      <div class="card" style="background:#f0fdf4; border:1.5px solid #86efac; padding:3.5mm 5mm;">
+        <div style="font-size:8.5pt; font-weight:800; color:#166534; margin-bottom:1.5mm;">
+          🎯 POV (Point of View: 핵심 고객 관점 문제정의)
+        </div>
+        <div style="font-size:9.5pt; font-weight:700; color:#14532d; line-height:1.5;">
+          “금정구에 거주하는 71세 자립형 시니어 김영숙 씨는 타인에게 의존하지 않고 스스로 장보기를 원하지만, <br>
+          <span style="color:#dc2626; text-decoration:underline;">[시선과 동떨어진 안내 체계]</span>와 
+          <span style="color:#dc2626; text-decoration:underline;">[고령자를 배려하지 않은 급격한 셀프계산대 중심 운영]</span>으로 인해 <br>
+          매장 안에서 길을 잃고 헤매며 디지털 소외감과 극심한 신체적 피로를 경험하고 있다.”
+        </div>
+      </div>
+
+      <!-- 3대 HMW 질문 카드 그리드 -->
+      <div class="grid-3" style="flex:1;">
+        <div class="card" style="border-top:3.5mm solid #0b69a3;">
+          <div style="font-size:8pt; font-weight:800; color:#0b69a3; margin-bottom:1.5mm;">HMW 1. [탐색의 자율성]</div>
+          <p style="font-size:7.5pt; font-weight:600; color:#1e293b; line-height:1.45; margin-bottom:2mm;">
+            “어떻게 하면 시니어 고객이 고개를 아프게 젖히거나 직원을 찾아 헤매지 않고도, <strong>자신의 눈높이에서 원하는 상품의 위치를 10초 안에 직관적으로 파악</strong>하게 할 수 있을까?”
+          </p>
+          <div style="margin-top:auto; font-size:6.8pt; color:#64748b; background:#f1f5f9; padding:2mm; border-radius:4px;">
+            ➔ <strong>도출 솔루션:</strong> 3-Step 매장안내 시스템 (입구 리플릿 + 아이레벨 기둥 인덱스 + 바닥 컬러 유도선)
+          </div>
+        </div>
+
+        <div class="card" style="border-top:3.5mm solid #d97706;">
+          <div style="font-size:8pt; font-weight:800; color:#d97706; margin-bottom:1.5mm;">HMW 2. [결제의 무자각화]</div>
+          <p style="font-size:7.5pt; font-weight:600; color:#1e293b; line-height:1.45; margin-bottom:2mm;">
+            “어떻게 하면 시니어 고객이 키오스크 조작 두려움이나 줄서기 없이, <strong>카트 자체에서 물건을 담으며 가격을 확인하고 즉시 안심 결제</strong>를 완료하게 할 수 있을까?”
+          </p>
+          <div style="margin-top:auto; font-size:6.8pt; color:#64748b; background:#f1f5f9; padding:2mm; border-radius:4px;">
+            ➔ <strong>도출 솔루션:</strong> 시니어 특화 이지 스마트 카트 (큰글씨 UI, 음성 검색, 카트 즉시 결제)
+          </div>
+        </div>
+
+        <div class="card" style="border-top:3.5mm solid #16a34a;">
+          <div style="font-size:8pt; font-weight:800; color:#16a34a; margin-bottom:1.5mm;">HMW 3. [체력적 배려]</div>
+          <p style="font-size:7.5pt; font-weight:600; color:#1e293b; line-height:1.45; margin-bottom:2mm;">
+            “어떻게 하면 1~2층 복합 매장을 이동하는 시니어의 <strong>신체 피로를 덜어주고, 쇼핑 중간에 안심하고 머무를 수 있는 노인지향적 공간</strong>을 조성할 수 있을까?”
+          </p>
+          <div style="margin-top:auto; font-size:6.8pt; color:#64748b; background:#f1f5f9; padding:2mm; border-radius:4px;">
+            ➔ <strong>도출 솔루션:</strong> 카트 전동 보조(어시스트) + '이마트 사랑방' 쉼터 & 골든 서포터즈
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 10: 솔루션 1 - 매장안내도 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Solution 1: Physical Environment</span>
+        <h2 class="header-title">솔루션 1: 3-Step 시니어 친화 매장 안내 시스템</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">물리 환경 개선</span>
+        <span class="slide-number">10/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-2">
+        <!-- 좌측: 다이소 홈플러스동래점 벤치마킹 분석 -->
+        <div class="card">
+          <div class="card-title"><span class="icon">🖼️</span>벤치마킹 레퍼런스: 다이소 홈플러스 동래점 매장안내도</div>
+          <div style="flex:1; border-radius:5px; overflow:hidden; border:1px solid #cbd5e1; margin-bottom:2mm; position:relative;">
+            <img src="다이소_홈플러스동래점_매장안내도.jpg" alt="다이소 안내도" style="width:100%; height:100%; object-fit:contain; background:#f1f5f9;">
+          </div>
+          <div style="font-size:6.8pt; color:#475569; line-height:1.4;">
+            • <strong>카테고리별 고대비 컬러 코딩:</strong> 파랑(문구), 주황(인테리어), 초록(욕실) 등 구역별 색상 분별력 우수.<br>
+            • <strong>시니어 이마트 적용 착안점:</strong> 천장 표지판 의존을 탈피하고, <strong>출입구 리플릿 + 기둥 인덱스 + 바닥 유도선</strong>의 3단계 입체 시스템으로 재설계함.
+          </div>
+        </div>
+
+        <!-- 우측: 3-Step 매장안내 상세 사양 -->
+        <div style="display:flex; flex-direction:column; gap:2.5mm;">
+          <div class="card" style="border-left:4px solid #0b69a3; flex:1;">
+            <div style="font-size:8pt; font-weight:800; color:#0b69a3; margin-bottom:1mm;">Step 1. [진입부] '한눈에 쏙' 포켓 리플릿 맵 비치</div>
+            <p style="font-size:7pt; color:#334155; line-height:1.4;">
+              • <strong>위치:</strong> 3대 출입구 및 카트 거치대 바로 옆 전용 스탠드 비치.<br>
+              • <strong>사양:</strong> 18pt 이상 큰 글씨, 코팅 접이식(A5 ➔ A3 펼침), 고대비 색상 테마.<br>
+              • <strong>내용:</strong> 가나다순 핵심 품목별 매대 번호("참기름 ➔ 1층 7번") & 대형 픽토그램 수록.
+            </p>
+          </div>
+
+          <div class="card" style="border-left:4px solid #d97706; flex:1;">
+            <div style="font-size:8pt; font-weight:800; color:#d97706; margin-bottom:1mm;">Step 2. [동선] 아이레벨(130~170cm) 4면 기둥 인덱스</div>
+            <p style="font-size:7pt; color:#334155; line-height:1.4;">
+              • <strong>개선:</strong> 고개를 들어야 하는 천장 표지판 사각지대 완전 해소.<br>
+              • <strong>사양:</strong> 매장 내 주요 지주 기둥 사방에 시니어 보행 눈높이 래핑 시공.<br>
+              • <strong>내용:</strong> 통로 진입 전 대표 품목 3가지 즉시 노출 + 상단 조명 돌출 픽토그램.
+            </p>
+          </div>
+
+          <div class="card" style="border-left:4px solid #16a34a; flex:1;">
+            <div style="font-size:8pt; font-weight:800; color:#16a34a; margin-bottom:1mm;">Step 3. [바닥] 컬러 웨이파인딩(Wayfinding) 유도 라인</div>
+            <p style="font-size:7pt; color:#334155; line-height:1.4;">
+              • <strong>병원/환승역 성공 사례 벤치마킹:</strong> 바닥만 보고 걷는 고령자 보행 특성 반영.<br>
+              • <strong>컬러 라인:</strong> 🟢 신선식품 라인 / 🟠 가공식품 라인 / 🔵 2층 무빙워크 및 출구 라인.<br>
+              • 미끄럼 방지 특수 엠보싱 테이프 시공으로 낙상 사고 원천 차단.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 11: 솔루션 2 - 이지 스마트 카트 (HW) ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Solution 2: Retail Tech (HW)</span>
+        <h2 class="header-title">솔루션 2: 시니어 특화 '이지 스마트 카트 (Easy Cart)' 하드웨어 사양</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">디바이스 기획</span>
+        <span class="slide-number">11/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-2">
+        <!-- 카트 구조 다이어그램 카드 -->
+        <div class="card" style="align-items:center; justify-content:center; background:#fafafa;">
+          <div style="font-size:8pt; font-weight:800; color:#1e293b; margin-bottom:2mm; align-self:flex-start;">
+            🛒 이지 스마트 카트 (Easy Cart) 하드웨어 아키텍처
+          </div>
+          <!-- 카트 그래픽 표현 -->
+          <div style="width:90%; height:75mm; border:2px dashed #cbd5e1; border-radius:8px; position:relative; background:#ffffff; padding:3mm;">
+            <div style="position:absolute; top:4mm; left:6mm; background:#1e293b; color:#ffb800; padding:2mm 4mm; border-radius:6px; font-size:7pt; font-weight:800;">
+              ① 10.1인치 광시야각 디스플레이 (햇빛/조명 저반사 코팅)
+            </div>
+            <div style="position:absolute; top:18mm; left:6mm; background:#0b69a3; color:#ffffff; padding:2mm 4mm; border-radius:6px; font-size:7pt; font-weight:700;">
+              ② 손잡이 일체형 자동 바코드 스캐너
+            </div>
+            <div style="position:absolute; top:32mm; left:6mm; background:#dc2626; color:#ffffff; padding:2mm 4mm; border-radius:6px; font-size:7pt; font-weight:700;">
+              ③ 원터치 직원 호출 비상 물리 버튼 (Help Button)
+            </div>
+            <div style="position:absolute; bottom:16mm; left:6mm; background:#d97706; color:#ffffff; padding:2mm 4mm; border-radius:6px; font-size:7pt; font-weight:700;">
+              ④ 바구니 하단 로드셀(무게 센서) - 도난/누락 자동 검증
+            </div>
+            <div style="position:absolute; bottom:4mm; left:6mm; background:#16a34a; color:#ffffff; padding:2mm 4mm; border-radius:6px; font-size:7pt; font-weight:700;">
+              ⑤ 전동 모터 어시스트 휠 (쌀·생수를 실어도 한 손 주행 가능)
+            </div>
+          </div>
+        </div>
+
+        <!-- 4대 HW 핵심 혁신 기술 스펙 -->
+        <div style="display:flex; flex-direction:column; gap:2.5mm;">
+          <div class="card" style="flex:1;">
+            <div class="card-title" style="color:#0b69a3;"><span class="icon">🔍</span>10.1인치 광시야각 저반사 디스플레이</div>
+            <p style="font-size:7pt; color:#475569; line-height:1.4;">
+              매장 천장 조명 반사로 인한 눈부심을 방지하는 Anti-Glare 코팅 적용. 카트 주행 중에도 허리를 굽히지 않고 선 자세에서 편안하게 터치 가능한 최적 경사각(45도) 설계.
+            </p>
+          </div>
+
+          <div class="card" style="flex:1;">
+            <div class="card-title" style="color:#16a34a;"><span class="icon">⚡</span>파워 어시스트 (전동 모터 구동)</div>
+            <p style="font-size:7pt; color:#475569; line-height:1.4;">
+              손잡이에 장착된 토크 센서가 미는 힘을 감지하여 모터가 부드럽게 구동을 보조. 최대 30kg 짐을 실어도 500g을 미는 가벼운 힘으로 작동하여 <strong>관절염 시니어의 신체 피로 70% 경감</strong>.
+            </p>
+          </div>
+
+          <div class="card" style="flex:1;">
+            <div class="card-title" style="color:#d97706;"><span class="icon">⚖️</span>무게 센서 & 자동 비전 바코드 인식</div>
+            <p style="font-size:7pt; color:#475569; line-height:1.4;">
+              카트에 물건을 담을 때 손잡이 스캐너에 가볍게 대면 '삐-' 소리와 함께 즉시 등록. 바구니 무게 센서가 상품 실제 중량과 대조하여 오차를 자동 검증(정확도 99.4%).
+            </p>
+          </div>
+
+          <div class="card" style="flex:1;">
+            <div class="card-title" style="color:#dc2626;"><span class="icon">🆘</span>직원 호출 물리 벨 & 데드맨 안전 브레이크</div>
+            <p style="font-size:7pt; color:#475569; line-height:1.4;">
+              기기 오류나 도움이 필요할 때 누르는 빨간색 물리 버튼 장착(주변 직원 스마트워치로 위치 알림). 손잡이에서 손을 떼면 0.5초 내 자동 정지하는 절대 안전 시스템 구축.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 12: 솔루션 2 - 이지 스마트 카트 (UI) ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Solution 2: Retail Tech (UX/UI)</span>
+        <h2 class="header-title">솔루션 2: 시니어 맞춤형 화면 UI 목업 및 결제 프로세스</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">UX/UI 기획</span>
+        <span class="slide-number">12/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-2">
+        <!-- 태블릿 화면 목업 구현 -->
+        <div class="tablet-mockup">
+          <div class="tablet-screen">
+            <div class="tablet-topbar">
+              <span>🛒 emart 금정점 · 이지 카트</span>
+              <span style="background:#111827; color:#ffb800; padding:1px 6px; border-radius:4px; font-size:6.5pt;">큰글씨 모드 ON</span>
+            </div>
+            <div class="tablet-content">
+              <!-- 음성 검색 바 -->
+              <div style="background:#f1f5f9; border:2px solid #0b69a3; border-radius:6px; padding:2mm; display:flex; align-items:center; justify-content:space-between;">
+                <span style="font-size:8pt; font-weight:700; color:#1e293b;">🎙️ “참기름 어디 있노?”</span>
+                <span style="background:#0b69a3; color:#ffffff; font-size:6.5pt; padding:2px 8px; border-radius:4px; font-weight:700;">말하기</span>
+              </div>
+
+              <!-- 원터치 빠른 버튼 -->
+              <div class="grid-3" style="gap:1.5mm; height:12mm;">
+                <div style="background:#ffedd5; color:#c2410c; font-size:6.8pt; font-weight:700; display:flex; align-items:center; justify-content:center; border-radius:4px;">과일/채소</div>
+                <div style="background:#fee2e2; color:#b91c1c; font-size:6.8pt; font-weight:700; display:flex; align-items:center; justify-content:center; border-radius:4px;">정육/생선</div>
+                <div style="background:#fef3c7; color:#b45309; font-size:6.8pt; font-weight:700; display:flex; align-items:center; justify-content:center; border-radius:4px;">양념/기름</div>
+              </div>
+
+              <!-- 장바구니 리스트 -->
+              <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; border-radius:5px; padding:2mm; font-size:7pt; display:flex; flex-direction:column; gap:1.5mm;">
+                <div style="display:flex; justify-content:space-between; font-weight:700; border-bottom:1px solid #cbd5e1; padding-bottom:1mm;">
+                  <span>담은 상품 (2개)</span>
+                  <span style="color:#0b69a3;">실시간 합계: 16,800원</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span>• 피코크 진한 참기름 350ml</span>
+                  <span style="font-weight:700; color:#d97706;">6,900원</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span>• 파머스픽 사과 1봉 (행사할인)</span>
+                  <span style="font-weight:700; color:#d97706;">9,900원</span>
+                </div>
+                <div style="margin-top:auto; background:#ecfdf5; color:#065f46; padding:1.5mm; border-radius:4px; font-size:6.5pt; text-align:center;">
+                  🎉 신세계포인트 회원 할인 2,100원이 자동 적용되었습니다!
+                </div>
+              </div>
+
+              <!-- 하단 버튼부 -->
+              <div style="display:flex; gap:2mm;">
+                <div style="flex:1; background:#334155; color:#ffffff; font-size:7.5pt; font-weight:700; padding:2.5mm; border-radius:5px; text-align:center;">
+                  📍 상품 위치 길안내
+                </div>
+                <div style="flex:1; background:#d97706; color:#ffffff; font-size:7.5pt; font-weight:800; padding:2.5mm; border-radius:5px; text-align:center;">
+                  💳 카트에서 바로 결제
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측: UX/UI 핵심 설계 원칙 3대 특징 -->
+        <div style="display:flex; flex-direction:column; gap:2.5mm;">
+          <div class="card" style="border-left:4px solid #ffb800; flex:1;">
+            <div style="font-size:8pt; font-weight:800; color:#b45309; margin-bottom:1mm;">1. 회원가입/로그인 강제 폐지 (Zero-Friction)</div>
+            <p style="font-size:7pt; color:#475569; line-height:1.45;">
+              복잡한 스마트폰 앱 연동 없이, 카트를 잡는 순간 즉시 사용 가능. 포인트 적립을 원할 때만 큰 숫자 키패드로 휴대폰 번호 입력.
+            </p>
+          </div>
+
+          <div class="card" style="border-left:4px solid #0b69a3; flex:1;">
+            <div style="font-size:8pt; font-weight:800; color:#0b69a3; margin-bottom:1mm;">2. 사투리 인식 음성 내비게이션</div>
+            <p style="font-size:7pt; color:#475569; line-height:1.45;">
+              고령층의 구어체 및 경상도 방언("된장 어디 붙었노?")을 완벽 인식. 화면에 매장 맵과 함께 현재 위치에서 해당 매대까지의 동선을 굵은 화살표로 직관적 안내.
+            </p>
+          </div>
+
+          <div class="card" style="border-left:4px solid #16a34a; flex:1;">
+            <div style="font-size:8pt; font-weight:800; color:#16a34a; margin-bottom:1mm;">3. 카트 내 10초 원스톱 결제 (줄서기 종식)</div>
+            <p style="font-size:7pt; color:#475569; line-height:1.45;">
+              쇼핑 완료 후 계산대에 설 필요 없이, 카트 우측 리더기에 신용카드 삽입 또는 삼성페이 태그 즉시 결제 완료. 영수증 출력 후 전용 출구 게이트를 통해 10초 만에 쾌속 출차.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 13: 솔루션 3 - 공간/인적 인프라 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Solution 3: Space & Human Support</span>
+        <h2 class="header-title">솔루션 3: 공간 및 인적 인프라 확충 (사랑방 쉼터 & 골든 서포터즈)</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">휴게/인적 케어</span>
+        <span class="slide-number">13/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div class="grid-2">
+        <!-- 이마트 금정 사랑방 쉼터 -->
+        <div class="card">
+          <div class="card-title" style="color:#16a34a;"><span class="icon">🛋️</span>‘이마트 금정 사랑방’ 쇼핑 쉼터 조성</div>
+          <div style="font-size:7.2pt; color:#475569; line-height:1.5;">
+            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:5px; padding:2mm; margin-bottom:2mm;">
+              <strong>• 학술 근거 반영:</strong> 편의적 혜택(휴게공간)은 노인지향성 지각에 <strong>β = .378로 가장 큰 영향</strong>을 미침. 수유실이나 키즈카페처럼 시니어만을 위한 전용 쉼터가 필수적임.
+            </div>
+            <div style="margin-bottom:2mm;">
+              <strong>• 설치 장소:</strong> 1층 신선식품 코너 끝자락 유휴 공간 & 2층 무빙워크 하차부 2개소 구축.
+            </div>
+            <div style="margin-bottom:2mm;">
+              <strong>• 구비 편의 시설:</strong>
+              <ul style="padding-left:4mm; margin-top:1mm;">
+                <li>쿠션감 있는 등받이 벤치 (허리/무릎 부담 최소화)</li>
+                <li>무료 온수/냉수 정수기 및 자동 혈압측정기</li>
+                <li>대형 화면을 통한 금정구 복지 소식 및 금주 이마트 할인 행사 안내</li>
+              </ul>
+            </div>
+            <div style="font-size:6.8pt; color:#166534; font-weight:700;">
+              ➔ "장보다 힘들면 언제든 편하게 앉아서 쉬어갈 수 있는 마트" 이미지 각인.
+            </div>
+          </div>
+        </div>
+
+        <!-- 골든 서포터즈 (디지털 안내 도우미) -->
+        <div class="card">
+          <div class="card-title" style="color:#0b69a3;"><span class="icon">🤝</span>금정구 시니어클럽 연계 ‘골든 서포터즈’</div>
+          <div style="font-size:7.2pt; color:#475569; line-height:1.5;">
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:5px; padding:2mm; margin-bottom:2mm;">
+              <strong>• 현장 문제 해결:</strong> 셀프계산대 18대 앞 주저 현상 및 스마트 카트 첫 사용 거부감을 또래 시니어의 따뜻한 안내로 완벽 해소.
+            </div>
+            <div style="margin-bottom:2mm;">
+              <strong>• 운영 방식:</strong> 부산 금정구 시니어클럽(노인일자리 사업)과 협약하여 만 60~65세 시니어 서포터즈 4명 선발 및 친절 교육.
+            </div>
+            <div style="margin-bottom:2mm;">
+              <strong>• 핵심 수행 업무:</strong>
+              <ul style="padding-left:4mm; margin-top:1mm;">
+                <li>출입구에서 이지 스마트 카트 수령 및 원터치 사용법 안내</li>
+                <li>셀프계산대 코너 상주하며 결제/바코드 오류 실시간 지원</li>
+                <li>고령 고객 무거운 장바구니 카트 탑재 및 자율포장대 포장 보조</li>
+              </ul>
+            </div>
+            <div style="font-size:6.8pt; color:#1e40af; font-weight:700;">
+              ➔ 지역사회 노인 일자리 창출(ESG) + 매장 운영 효율성 극대화 동시 달성.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 14: To-Be 고객여정지도 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">To-Be Customer Journey Map</span>
+        <h2 class="header-title">To-Be 고객여정지도: 혁신 후 고객 경험 및 감정 점수 변화</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">개선 후 여정</span>
+        <span class="slide-number">14/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <table class="custom-table" style="font-size:6.8pt;">
+        <thead>
+          <tr>
+            <th style="width:14%;">단계</th>
+            <th style="width:17%;">1. 입장 / 카트 수령</th>
+            <th style="width:17%;">2. 상품 탐색 (혁신)</th>
+            <th style="width:17%;">3. 이동 및 휴식</th>
+            <th style="width:18%;">4. 계산 및 결제 (혁신)</th>
+            <th style="width:17%;">5. 포장 및 귀가</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700; background:#f8fafc;">To-Be 솔루션</td>
+            <td>포켓 리플릿 맵 + 이지 카트 수령</td>
+            <td>음성 검색 + 아이레벨 인덱스</td>
+            <td>전동 모터 어시스트 + 사랑방 쉼터</td>
+            <td>카트 원스톱 즉시 결제</td>
+            <td>체력 방전 없는 쾌적 귀가</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; background:#f8fafc;">고객 경험 변화</td>
+            <td>입구에서 전체 지도를 챙기고, 가벼운 스마트 카트를 타고 출발</td>
+            <td>“참기름 어디 있노?” 말 한마디로 위치 확인 및 기둥 눈높이 인덱스 식별</td>
+            <td>무거운 쌀을 실어도 가볍게 밀리며, 다리 아플 땐 사랑방에서 휴식</td>
+            <td>계산대 줄 설 필요 없이 카트에서 카드 꽂고 10초 만에 출차</td>
+            <td>“다음 주에 또 와야지” 만족스러운 미소와 함께 가뿐한 발걸음 귀가</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700; background:#f8fafc; color:#16a34a;">감정 점수 (To-Be)</td>
+            <td><span class="emotion-badge emotion-high">4.5 만족 (+1.5)</span></td>
+            <td><span class="emotion-badge emotion-high">4.8 대만족 (+3.0)</span></td>
+            <td><span class="emotion-badge emotion-high">4.6 대만족 (+2.6)</span></td>
+            <td><span class="emotion-badge emotion-high">4.7 대만족 (+2.8)</span></td>
+            <td><span class="emotion-badge emotion-high">4.3 만족 (+1.5)</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- As-Is vs To-Be 감정곡선 시각화 비교 -->
+      <div class="card" style="flex:1; margin-top:2mm; background:#f0fdf4; border:1px solid #bbf7d0; padding:2mm 4mm;">
+        <div style="font-size:7.5pt; font-weight:700; color:#166534; margin-bottom:1mm;">
+          📈 감정 점수 비포 & 애프터 극적 반등 (평균: 2.4점 ➔ 4.6점, +2.2점 수직 상승)
+        </div>
+        <div class="grid-2" style="font-size:6.8pt; color:#14532d; gap:3mm;">
+          <div>
+            • <strong>상품 탐색 구간:</strong> 1.8점 (As-Is 헤맴/좌절) ➔ <strong>4.8점 (To-Be 즉각 발견/성취감)</strong><br>
+            • <strong>계산 결제 구간:</strong> 1.9점 (As-Is 대기열/불안) ➔ <strong>4.7점 (To-Be 카트 즉시 결제/당당함)</strong>
+          </div>
+          <div>
+            • <strong>자립적 쇼핑 만족도:</strong> 타인의 도움 없이 시니어 스스로 스마트 기기를 다루어 결제까지 완수함으로써 <strong>자존감 및 매장 신뢰도 극대화</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 15: 기대효과 & 비즈니스 임팩트 ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Business Impact</span>
+        <h2 class="header-title">기대효과: 고객 가치 및 이마트 비즈니스 정량적 임팩트</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">기대 효과</span>
+        <span class="slide-number">15/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <!-- 4대 정량 성과 카드 -->
+      <div class="grid-4" style="height:26mm;">
+        <div class="stat-box">
+          <div class="stat-label">상품 탐색 소요 시간</div>
+          <div class="stat-val primary-text">-40%</div>
+          <div class="stat-desc">평균 18분 헤맴 ➔ 5분 미만 단축</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">계산대 회전율 개선</div>
+          <div class="stat-val accent">+35%</div>
+          <div class="stat-desc">카트 즉시 결제 분산으로 병목 해소</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">유인 계산대 대기시간</div>
+          <div class="stat-val red">-50%</div>
+          <div class="stat-desc">피크타임 대기 15분 ➔ 7분 이내</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">시니어 고객 1회 객단가</div>
+          <div class="stat-val primary-text">+12%</div>
+          <div class="stat-desc">실시간 할인액 표시로 계획 구매 증대</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="flex:1;">
+        <!-- 고객 관점 가치 -->
+        <div class="card" style="border-top:3px solid #0b69a3;">
+          <div class="card-title" style="color:#0b69a3;"><span class="icon">👤</span>고객 관점 기대가치 (Customer Value)</div>
+          <div style="font-size:7pt; color:#334155; line-height:1.5;">
+            <div style="margin-bottom:2mm; background:#ffffff; border-radius:4px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>1. 자율적 쇼핑의 자존감 회복:</strong> "나도 남한테 안 물어보고 카트 찍어서 계산까지 다 했다"는 디지털 성취감 고취.
+            </div>
+            <div style="margin-bottom:2mm; background:#ffffff; border-radius:4px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>2. 체력적 피로도 70% 경감:</strong> 전동 어시스트 카트와 중간 쉼터 덕분에 장보기를 마친 후에도 지치지 않고 건강한 일상 유지.
+            </div>
+            <div style="background:#ffffff; border-radius:4px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>3. 가격 신뢰성 확보:</strong> 작은 가격표를 찡그려 볼 필요 없이 카트 화면에서 정확한 최종 결제 금액을 실시간 확인.
+            </div>
+          </div>
+        </div>
+
+        <!-- 매장/기업 관점 가치 -->
+        <div class="card" style="border-top:3px solid #d97706;">
+          <div class="card-title" style="color:#d97706;"><span class="icon">🏢</span>이마트 및 비즈니스 관점 가치 (Business Value)</div>
+          <div style="font-size:7pt; color:#334155; line-height:1.5;">
+            <div style="margin-bottom:2mm; background:#ffffff; border-radius:4px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>1. 초고령 상권 오프라인 1등 락인(Lock-in):</strong> 쿠팡/컬리 등 온라인 비대면 채널과 식자재마트에 이탈하지 않는 확고한 지역 충성 고객군 확보.
+            </div>
+            <div style="margin-bottom:2mm; background:#ffffff; border-radius:4px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>2. 매장 운영 인건비 효율화:</strong> 계산원 인력 추가 채용 없이도 셀프 계산대 회전율 35% 증대 및 캐셔 대기열 자연 해소.
+            </div>
+            <div style="background:#ffffff; border-radius:4px; padding:2mm; border:1px solid #e2e8f0;">
+              <strong>3. ESG 경영 및 시니어 리테일 표준 정립:</strong> 지자체(시니어클럽) 일자리 창출 연계 및 전국 점포 대상 '고령친화 스마트 스토어' 표준 모델 선점.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+  <!-- ==================== SLIDE 16: 실행 로드맵 & Q&A ==================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="header-category">Roadmap & Risk Management</span>
+        <h2 class="header-title">실행 로드맵 및 리스크 관리: 3단계 추진 계획</h2>
+      </div>
+      <div class="header-right">
+        <span class="slide-badge">실행 계획</span>
+        <span class="slide-number">16/16</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <!-- 3단계 로드맵 타임라인 -->
+      <div class="grid-3" style="height:32mm;">
+        <div class="card" style="background:#eff6ff; border:1.5px solid #bfdbfe;">
+          <div style="font-size:7.5pt; font-weight:800; color:#1d4ed8; margin-bottom:1mm;">Phase 1. 단기 즉시 적용 (1~2개월)</div>
+          <div style="font-size:6.8pt; color:#334155; line-height:1.4;">
+            • 3대 출입구 시니어 포켓 리플릿 맵 비치<br>
+            • 기둥 10개소 아이레벨 인덱스 시공<br>
+            • 바닥 컬러 웨이파인딩 라인 테이핑<br>
+            • 1, 2층 '이마트 사랑방' 쉼터 2개소 구축
+          </div>
+        </div>
+        <div class="card" style="background:#fef3c7; border:1.5px solid #fde68a;">
+          <div style="font-size:7.5pt; font-weight:800; color:#b45309; margin-bottom:1mm;">Phase 2. 파일럿 검증 (3~6개월)</div>
+          <div style="font-size:6.8pt; color:#334155; line-height:1.4;">
+            • 이지 스마트 카트 <strong>20대 금정점 시범 도입</strong><br>
+            • 금정구 시니어클럽 '골든 서포터즈' 4인 배치<br>
+            • 피크타임(14~18시) 현장 밀착 코칭<br>
+            • 시니어 사용자 FGI 및 UI 수정 보완
+          </div>
+        </div>
+        <div class="card" style="background:#f0fdf4; border:1.5px solid #bbf7d0;">
+          <div style="font-size:7.5pt; font-weight:800; color:#15803d; margin-bottom:1mm;">Phase 3. 안정화 및 확산 (7~12개월)</div>
+          <div style="font-size:6.8pt; color:#334155; line-height:1.4;">
+            • 스마트 카트 운영 대수 <strong>50대로 확대</strong><br>
+            • 신세계포인트 앱 장보기 리스트 연동 옵션<br>
+            • 부산권 초고령 상권(연제점, 사상점) 롤아웃<br>
+            • '시니어 프렌들리 스토어' 인증 브랜드화
+          </div>
+        </div>
+      </div>
+
+      <!-- 리스크 매트릭스 및 마무리 카드 -->
+      <div class="grid-2" style="flex:1;">
+        <div class="card">
+          <div class="card-title"><span class="icon">🛡️</span>주요 리스크 대응 방안 (Risk Mitigation)</div>
+          <table class="custom-table" style="font-size:6.5pt;">
+            <thead>
+              <tr>
+                <th>리스크 요인</th>
+                <th>대응 및 완화 전략</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:700; color:#dc2626;">초기 도입 비용 부담</td>
+                <td>고가 라이다 배제, 범용 태블릿+로드셀 중심 경량 설계로 단가 60% 절감 + 지자체 고령친화 실증 바우처 연계</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700; color:#d97706;">기기 조작 불안감</td>
+                <td>로그인/인증 절차 완전 생략 ("물건만 담으면 끝"), 골든 서포터즈의 1:1 대면 안내</td>
+              </tr>
+              <tr>
+                <td style="font-weight:700; color:#0b69a3;">충돌/안전사고 위험</td>
+                <td>전동 구동 속도 최대 3km/h 이하 제한, 손잡이 이탈 시 즉시 정지하는 데드맨 안전 브레이크</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card" style="background:#0f172a; color:#ffffff; justify-content:center; align-items:center; text-align:center; padding:4mm;">
+          <div style="font-size:10pt; font-weight:800; color:#ffb800; margin-bottom:2mm;">
+            "누구나 나이가 들어도, 혼자서 당당하고 편안하게 장볼 권리가 있습니다."
+          </div>
+          <p style="font-size:7.2pt; color:#cbd5e1; line-height:1.5; margin-bottom:3mm;">
+            이마트 금정점에서 시작되는 이 작은 혁신은,<br>
+            초고령화 시대 대한민국 모든 오프라인 리테일이 나아갈 가장 따뜻한 이정표가 될 것입니다.
+          </p>
+          <div style="font-size:11pt; font-weight:900; color:#ffffff; letter-spacing:1px;">
+            경청해 주셔서 대단히 감사합니다 · Q & A
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>신세계 FUTURE & DREAM ACADEMY · 1차 고객경험 프로젝트</span>
+      <span>이마트 금정점 시니어 고객경험(CX) 혁신안</span>
+    </div>
+  </div>
+
+</body>
+</html>

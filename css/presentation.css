@@ -1,0 +1,514 @@
+/* ==========================================================================
+   이마트 금정점 시니어 고객경험(CX) 혁신 프로젝트
+   프레젠테이션(16:9) 및 대시보드 뷰 스타일 (presentation.css)
+   ========================================================================== */
+
+/* 메인 뷰포트 래퍼 */
+.app-viewport {
+  position: fixed;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--navy-950);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 12px 16px 56px 16px;
+}
+
+/* 16:9 프레젠테이션 스테이지 캔버스 */
+.presentation-stage {
+  width: 100%;
+  max-width: 1540px;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: calc((100vw - 32px) * 9 / 16);
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+/* 개별 슬라이드 기본 규격 */
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  padding: 24px 32px 18px 32px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.slide.prev-slide {
+  transform: translateX(-20px);
+}
+
+/* 슬라이드 헤더 */
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px solid var(--slate-200);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-category {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0284C7;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-category::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--emart-yellow);
+  border-radius: 2px;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy-900);
+  letter-spacing: -0.4px;
+  line-height: 1.2;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slide-badge {
+  font-size: 11px;
+  font-weight: 700;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid #BFDBFE;
+}
+
+.slide-number {
+  font-family: var(--font-numeric);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--slate-400);
+}
+
+/* 슬라이드 본문 */
+.slide-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  height: calc(100% - 48px - 28px);
+}
+
+/* 슬라이드 푸터 */
+.slide-footer {
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--slate-200);
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 10.5px;
+  color: var(--slate-400);
+  flex-shrink: 0;
+}
+
+/* 표지 슬라이드 (Cover Slide 01) */
+.slide-cover {
+  background: linear-gradient(135deg, #07111E 0%, #0F1D2F 50%, #162B44 100%);
+  color: #FFFFFF;
+  padding: 40px 48px;
+  justify-content: space-between;
+}
+
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cover-center {
+  margin: auto 0;
+}
+
+.cover-badge {
+  display: inline-block;
+  background: rgba(255, 184, 0, 0.15);
+  border: 1px solid var(--emart-yellow);
+  color: var(--emart-yellow);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.cover-title {
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  color: #FFFFFF;
+}
+
+.cover-title span {
+  color: var(--emart-yellow);
+  text-shadow: 0 0 20px rgba(255, 184, 0, 0.4);
+}
+
+.cover-subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--slate-300);
+  line-height: 1.6;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 18px;
+}
+
+.cover-meta {
+  display: flex;
+  gap: 32px;
+  font-size: 12px;
+  color: var(--slate-400);
+}
+
+.cover-meta strong {
+  color: #FFFFFF;
+  display: block;
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+.cover-start-btn {
+  background: var(--emart-yellow);
+  color: var(--navy-950);
+  border: none;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(255, 184, 0, 0.4);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.cover-start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 184, 0, 0.6);
+}
+
+/* ==========================================================================
+   하단 프레젠테이션 컨트롤러 (Presenter Bar)
+   ========================================================================== */
+.presenter-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: rgba(13, 27, 45, 0.95);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  color: #FFFFFF;
+}
+
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  padding: 5px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: var(--emart-yellow);
+  color: var(--navy-950);
+  border-color: var(--emart-yellow);
+}
+
+.nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.slide-dots-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.slide-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.slide-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.slide-dot.active {
+  width: 24px;
+  background: var(--emart-yellow);
+  box-shadow: 0 0 8px var(--emart-yellow-glow);
+}
+
+.progress-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11.5px;
+  color: var(--slate-300);
+}
+
+.progress-bar-track {
+  width: 120px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 6.25%;
+  background: var(--emart-yellow);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+/* ==========================================================================
+   대시보드 모드 (Continuous Scroll Dashboard Mode)
+   ========================================================================== */
+body.view-dashboard-active .app-viewport {
+  position: static;
+  height: auto;
+  min-height: 100vh;
+  overflow-y: visible;
+  padding: 80px 24px 60px 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 28px;
+}
+
+body.view-dashboard-active .presenter-bar {
+  display: none;
+}
+
+/* 대시보드 좌측 고정 목차 (Sticky LNB) */
+.dashboard-lnb {
+  display: none;
+  position: sticky;
+  top: 76px;
+  width: 250px;
+  max-height: calc(100vh - 100px);
+  background: rgba(15, 29, 48, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  overflow-y: auto;
+  color: #FFFFFF;
+}
+
+body.view-dashboard-active .dashboard-lnb {
+  display: block;
+}
+
+.lnb-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--emart-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lnb-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lnb-item {
+  font-size: 11.5px;
+  color: var(--slate-300);
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lnb-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.lnb-item.active {
+  background: var(--emart-yellow);
+  color: var(--navy-950);
+  font-weight: 800;
+}
+
+/* 대시보드 모드에서의 슬라이드 컨테이너 */
+body.view-dashboard-active .presentation-stage {
+  position: static;
+  max-width: 1100px;
+  height: auto;
+  aspect-ratio: auto;
+  max-height: none;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow: visible;
+}
+
+body.view-dashboard-active .slide {
+  position: static;
+  width: 100%;
+  height: auto;
+  min-height: 620px;
+  aspect-ratio: 16 / 9;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   인쇄 / PDF 출력 최적화 (@media print)
+   ========================================================================== */
+@page {
+  size: 297mm 167.0625mm; /* 16:9 widescreen ratio */
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    overflow: visible !important;
+  }
+
+  .gnb-header,
+  .presenter-bar,
+  .dashboard-lnb,
+  .modal-overlay {
+    display: none !important;
+  }
+
+  .app-viewport {
+    position: static !important;
+    padding: 0 !important;
+    background: transparent !important;
+    display: block !important;
+  }
+
+  .presentation-stage {
+    max-width: none !important;
+    width: 100% !important;
+    height: auto !important;
+    box-shadow: none !important;
+    display: block !important;
+  }
+
+  .slide {
+    position: relative !important;
+    width: 297mm !important;
+    height: 167.0625mm !important;
+    opacity: 1 !important;
+    transform: none !important;
+    display: flex !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    break-after: page !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 10mm 14mm 8mm 14mm !important;
+  }
+}
